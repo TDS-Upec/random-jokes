@@ -23,7 +23,9 @@ def __filter_joke(regex):
 
 
 def random_joke():
-    pass
+    joke = random.choice(list_jokes)
+    print(joke[0])
+    print(joke[1])
 
 
 def main():
