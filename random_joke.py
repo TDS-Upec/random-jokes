@@ -17,13 +17,12 @@ list_jokes = [
 
 
 def __filter_joke(regex):
-    pass
-    # filtered = [j for j in list_jokes if re.search(regex, j[0]) or re.search(regex, j[1])]
-    # return filtered
+    filtered = [j for j in list_jokes if re.search(regex, j[0]) or re.search(regex, j[1])]
+    return filtered
 
 
-def random_joke():
-    joke = random.choice(list_jokes)
+def random_joke(regex):
+    joke = random.choice(__filter_joke(regex))
     print(joke[0])
     print(joke[1])
 
@@ -34,7 +33,10 @@ def main():
     args = [a for a in args if not a.startswith("-")]
 
     if len(sys.argv) > 1 and sys.argv[1] == "random":
-        random_joke()
+        if args:
+            random_joke(args[0])
+        else:
+            random_joke("")
 
 
 main()
