@@ -21,10 +21,11 @@ def __filter_joke(regex):
     return filtered
 
 
-def random_joke(regex):
-    joke = random.choice(__filter_joke(regex))
-    print(joke[0])
-    print(joke[1])
+def random_joke(k, regex=""):
+    for _ in range(k):
+        joke = random.choice(__filter_joke(regex))
+        print(joke[0])
+        print(joke[1])
 
 
 def main():
@@ -33,10 +34,9 @@ def main():
     args = [a for a in args if not a.startswith("-")]
 
     if len(sys.argv) > 1 and sys.argv[1] == "random":
-        if args:
-            random_joke(args[0])
-        else:
-            random_joke("")
+        k = int(options[0][2:]) if options else 1
+        regex = args[0] if args else ""
+        random_joke(k, regex)
 
 
 main()
